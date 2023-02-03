@@ -54,7 +54,7 @@ const upgradeBanner = computed(() => {
     <VerticalNavLink
       :item="{
         title: 'Registrations',
-        to: 'tables',
+        to: 'registrations',
         icon: { icon: 'mdi-account-circle' }
       }"
     />

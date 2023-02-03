@@ -8,42 +8,11 @@ import { onMounted, ref } from 'vue'
 import Admin from "../services/adminServices/AdminService"
 
 const data = ref()
-const array = ref({
-  heads: [
-    {
-      value: "Dessert (100g serving)",
-    },
-    {
-      value: "Calories",
-    },
-    {
-      value: "Fat (g)",
-    },
-    {
-      value: "Carbs (g)",
-    },
-    {
-      value: "Protein (g)",
-    },
-  ],
-  data: [{
-    dessert: 'Frozen Yogurt',
-    calories: 159,
-    fat: 6,
-    carbs: 24,
-    protein: 4,
-  },
-  {
-    dessert: 'Ice cream sandwich',
-    calories: 237,
-    fat: 6,
-    carbs: 24,
-    protein: 4,
-  }],
-})
 
 onMounted(() => {
   Admin.getUnregisteredUsers().then(result => {
+    result.heads.push("Action")
+    result.data[0].buttonMsg = "Approve"
     data.value = result
   })
 })
@@ -53,8 +22,11 @@ onMounted(() => {
   <VRow>
     <!-- basic -->
     <VCol cols="12">
-      <VCard title="Basic">
-        <TableBasic :elements="array" />
+      <VCard title="Registration Requests">
+        <TableBasic
+          v-if="data"
+          :elements="data"
+        />
       </VCard>
     </VCol>
   </VRow>

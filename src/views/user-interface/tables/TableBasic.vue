@@ -1,7 +1,7 @@
 <script setup>
 const props = defineProps({
   elements: {
-    type: Array,
+    type: Object,
     default: null,
   },
 })
@@ -16,27 +16,40 @@ const props = defineProps({
           :key="item.value"
           class="text-center"
         >
-          {{ item.value }}
+          {{ item }}
         </th>
       </tr>
     </thead>
     <tbody>
       <tr
         v-for="item in elements.data"
-        :key="item.dessert"
+        :key="item.email"
       >
-        <td>{{ item.dessert }}</td>
         <td class="text-center">
-          {{ item.calories }}
+          {{ item.id }}
         </td>
         <td class="text-center">
-          {{ item.fat }}
+          {{ item.name }}
         </td>
         <td class="text-center">
-          {{ item.carbs }}
+          {{ item.surname }}
         </td>
         <td class="text-center">
-          {{ item.protein }}
+          {{ item.company }}
+        </td>
+        <td class="text-center">
+          {{ item.email }}
+        </td>
+        <td class="text-center">
+          {{ String(item.role) }}
+        </td>
+        <td class="text-center">
+          <VBtn
+            variant="outlined"
+            color="success"
+          >
+            {{ item.buttonMsg }}
+          </VBtn>
         </td>
       </tr>
     </tbody>
