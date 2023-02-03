@@ -12,7 +12,6 @@ const data = ref()
 onMounted(() => {
   Admin.getUnregisteredUsers().then(result => {
     result.heads.push("Action")
-    result.data[0].buttonMsg = "Approve"
     data.value = result
   })
 })

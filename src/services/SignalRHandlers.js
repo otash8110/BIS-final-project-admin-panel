@@ -3,11 +3,11 @@ import store from "../store"
 export const ConfigureSignalRHandlers = function(signalRConnection) {
 
 
-  signalRConnection.on("ReceiveNotification", ReceiveNotification)
+  signalRConnection.on("RegistrationRequest", ReceiveNotification)
 
   return signalRConnection
 }
 
 function ReceiveNotification(data) {
-  store.commit("setNotificationMessage", data)
+  store.commit("signalr/setNotificationMessage", data)
 }

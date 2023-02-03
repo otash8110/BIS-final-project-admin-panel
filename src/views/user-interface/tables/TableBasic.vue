@@ -48,7 +48,7 @@ const props = defineProps({
             variant="outlined"
             color="success"
           >
-            {{ item.buttonMsg }}
+            Approve
           </VBtn>
         </td>
       </tr>

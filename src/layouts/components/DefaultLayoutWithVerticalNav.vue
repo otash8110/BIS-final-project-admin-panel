@@ -7,11 +7,24 @@ import { useStore } from "vuex"
 import Footer from '@/layouts/components/Footer.vue'
 import NavbarThemeSwitcher from '@/layouts/components/NavbarThemeSwitcher.vue'
 import UserProfile from '@/layouts/components/UserProfile.vue'
-import { computed } from 'vue'
+import { computed, onMounted, ref, watch } from 'vue'
 
+const snackbar = ref(false)
 const store = useStore()
 
 const isLoggedIn = computed(() => store.state.auth.status.loggedIn)
+const notificationText = computed(() => store.getters["signalr/GetNotification"])
+
+watch(notificationText, () =>{
+  snackbar.value = true
+})
+
+onMounted(() => {
+  if (isLoggedIn.value) {
+    console.log(store.getters["signalr/GetNotification"])
+    store.dispatch('signalr/createConnection')
+  }
+})
 </script>
 
 <template>
@@ -75,6 +88,25 @@ const isLoggedIn = computed(() => store.state.auth.status.loggedIn)
     <!-- 👉 Footer -->
     <template #footer>
       <Footer />
+    </template>
+
+
+    <template #notifications>
+      <VSnackbar
+        v-model="snackbar"
+      >
+        {{ notificationText }}
+
+        <template #actions>
+          <VBtn
+            color="blue"
+            variant="text"
+            @click="snackbar = false"
+          >
+            Close
+          </VBtn>
+        </template>
+      </VSnackbar>
     </template>
   </VerticalNavLayout>
 </template>

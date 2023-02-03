@@ -3,8 +3,10 @@ import { useTheme } from 'vuetify'
 import authV1MaskDark from '@/assets/images/pages/auth-v1-mask-dark.png'
 import authV1MaskLight from '@/assets/images/pages/auth-v1-mask-light.png'
 import { useStore } from "vuex"
+import { useRouter } from 'vue-router'
 
 const store = useStore()
+const router = useRouter()
 
 const form = ref({
   email: '',
@@ -25,7 +27,9 @@ function handleLogin() {
 
   store.dispatch('auth/login', user).then(() => {
     store.dispatch("signalr/createConnection")
+    router.push("/")
   })
+
 } 
 </script>
 
@@ -97,7 +101,6 @@ function handleLogin() {
               <VBtn
                 block
                 type="submit"
-                to="/"
                 @click="handleLogin"
               >
                 Login

@@ -3,7 +3,7 @@ import * as signalR from "@microsoft/signalr"
 
 const initialState = {
   connection: null,
-  notification: null,
+  notification: [],
 }
 
 export const signalr = {
@@ -34,7 +34,12 @@ export const signalr = {
       state.connection = connectionResult
     },
     setNotificationMessage(state, message) {
-      state.notification = message
+      state.notification = [message]
+    },
+  },
+  getters: {
+    GetNotification(state) {
+      return state.notification
     },
   },
 }

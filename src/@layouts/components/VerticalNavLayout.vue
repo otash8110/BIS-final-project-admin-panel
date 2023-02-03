@@ -45,6 +45,7 @@ const drawer = ref(lgAndUp.value)
     style="background: transparent"
   >
     <slot name="footer" />
+    <slot name="notifications" />
   </VFooter>
 </template>
 
