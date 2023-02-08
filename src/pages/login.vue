@@ -26,7 +26,6 @@ function handleLogin() {
   }
 
   store.dispatch('auth/login', user).then(() => {
-    store.dispatch("signalr/createConnection")
     router.push("/")
   })
 

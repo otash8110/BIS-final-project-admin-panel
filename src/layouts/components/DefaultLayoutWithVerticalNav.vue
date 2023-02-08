@@ -13,18 +13,17 @@ const snackbar = ref(false)
 const store = useStore()
 
 const isLoggedIn = computed(() => store.state.auth.status.loggedIn)
-const notificationText = computed(() => store.getters["signalr/GetNotification"])
-
-watch(notificationText, () =>{
-  snackbar.value = true
-})
+const notifications = computed(() => store.getters["signalr/GetNotifications"])
 
 onMounted(() => {
   if (isLoggedIn.value) {
-    console.log(store.getters["signalr/GetNotification"])
     store.dispatch('signalr/createConnection')
   }
 })
+
+const calcMargin = index => {
+  return `bottom: ${index * 50}px`
+}
 </script>
 
 <template>
@@ -93,15 +92,20 @@ onMounted(() => {
 
     <template #notifications>
       <VSnackbar
-        v-model="snackbar"
+        v-for="(notification, i) in notifications.filter(n => n.showing)"
+        :key="i"
+        v-model="notification.showing"
+        :style="calcMargin(i)"
+        :timeout="10000"
+        location="top right"
       >
-        {{ notificationText }}
+        {{ notification.message }}
 
         <template #actions>
           <VBtn
             color="blue"
             variant="text"
-            @click="snackbar = false"
+            @click="notification.showing = false"
           >
             Close
           </VBtn>
