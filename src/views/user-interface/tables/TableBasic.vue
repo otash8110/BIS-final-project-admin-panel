@@ -5,6 +5,7 @@ const props = defineProps({
     default: null,
   },
 })
+defineEmits(['approveRequest'])
 </script>
 
 <template>
@@ -47,6 +48,7 @@ const props = defineProps({
           <VBtn
             variant="outlined"
             color="success"
+            @click="$emit('approveRequest', item.email)"
           >
             Approve
           </VBtn>
