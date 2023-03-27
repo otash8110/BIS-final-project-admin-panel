@@ -96,7 +96,7 @@ const calcMargin = index => {
         :key="i"
         v-model="notification.showing"
         :style="calcMargin(i)"
-        :timeout="10000"
+        :timeout="3000"
         location="top right"
       >
         {{ notification.message }}

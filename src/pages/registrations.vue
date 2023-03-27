@@ -36,13 +36,12 @@ const approveRegisterRequest = email => {
   Admin.approveUserRegisration(email).then(result => {
     notification.value.color = "success"
     notification.value.message = "Successfully approved!"
+    fetchUsers()
   }, error => {
     notification.value.color = "error"
     notification.value.message = error.message
-
   })
   notification.value.showing = true
-  fetchUsers()
 }
 </script>
 
