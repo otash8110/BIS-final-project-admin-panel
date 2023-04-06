@@ -16,6 +16,27 @@ class AdminServices {
   approveUserRegisration(email) {
     return axios.post(API_URL + "Admin/ApproveUser", {
       email,
+    }, {
+      headers: authHeader(),
+    })
+      .then(response => {
+        return response.data
+      })
+  }
+
+  getUnapprovedProducts() {
+    return axios.get(API_URL + "Admin/GetUnregisteredProducts", {
+      headers: authHeader(),
+    })
+      .then(response => {
+        return response.data
+      })
+  }
+
+  approveProduct(productId) {
+    return axios.post(API_URL + "Admin/ApproveProduct", {
+      productId,
+    }, {
       headers: authHeader(),
     })
       .then(response => {
