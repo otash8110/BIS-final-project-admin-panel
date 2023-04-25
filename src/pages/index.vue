@@ -33,8 +33,6 @@ const newProject = {
     <VCol
       cols="12"
       md="4"
-    >
-      <AnalyticsTotalEarning />
-    </VCol>
+    />
   </VRow>
 </template>

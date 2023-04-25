@@ -63,7 +63,7 @@ const upgradeBanner = computed(() => {
       :item="{
         title: 'Products',
         to: 'products',
-        icon: { icon: 'mdi-account-circle' }
+        icon: { icon: 'mdi-shopping' }
       }"
     />
   </ul>

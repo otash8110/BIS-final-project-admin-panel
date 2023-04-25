@@ -8,7 +8,7 @@ const earnings = [
     avatar: zipcar,
     title: 'Zipcar',
     subtitle: 'Vuejs, React & HTML',
-    amount: '$24,895.65',
+    amount: '$24,896.67',
     progress: 'primary',
   },
   {
@@ -53,7 +53,7 @@ const earnings = [
     <VCardText class="pt-4">
       <div class="d-flex align-center">
         <h4 class="text-h4 me-2">
-          $24,895
+          $24,896
         </h4>
 
         <span class="text-success">
